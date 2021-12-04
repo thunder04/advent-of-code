@@ -1,0 +1,1 @@
+/home/thunder04/Projects/advent-of-code/rust/target/release/rust-src: /home/thunder04/Projects/advent-of-code/rust/src/main.rs /home/thunder04/Projects/advent-of-code/rust/src/year_2021/day1.rs /home/thunder04/Projects/advent-of-code/rust/src/year_2021/mod.rs
