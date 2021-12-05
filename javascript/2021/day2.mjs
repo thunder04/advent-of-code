@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs'
 
-const data = readFileSync('./2021/resources/day2.txt', { encoding: 'utf8' }).split('\n')
+const data = readFileSync('./resources/day2.txt', { encoding: 'utf8' }).split('\n')
 
 export function part1() {
     let horizontal_position = 0, depth = 0;

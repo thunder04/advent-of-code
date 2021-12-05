@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs'
 
 // [[x1, y1], [x2, y2]][500]
-const data = readFileSync('./2021/resources/day5.txt', { encoding: 'utf8' }).split('\n')
+const data = readFileSync('./resources/day5.txt', { encoding: 'utf8' }).split('\n')
     .map(line => line
         .split(' -> ')
         .map(coordinates => coordinates

@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs'
 
-const data = readFileSync('./2021/resources/day3.txt', { encoding: 'utf8' }).split('\n')
+const data = readFileSync('./resources/day3.txt', { encoding: 'utf8' }).split('\n')
     .map(m => parseInt(m, 2));
 
 export function part1() {
@@ -9,7 +9,7 @@ export function part1() {
     for (let b = 11; b >= 0; --b) {
         let ones = 0, zeros = 0;
 
-        for (const num of arr) {
+        for (const num of data) {
             if ((1 << b) & num) ++ones;
             else ++zeros;
         }
@@ -45,3 +45,5 @@ export function part2() {
 
     return oxygen_generator_rating * co2_scrubber_rating
 }
+
+console.log(part1())

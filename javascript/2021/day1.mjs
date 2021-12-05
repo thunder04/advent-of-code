@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs'
 
-const data = readFileSync('./2021/resources/day1.txt', { encoding: 'utf8' }).split('\n')
+const data = readFileSync('./resources/day1.txt', { encoding: 'utf8' }).split('\n')
     .map(Number);
 
 export function part1() {

@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs'
 
-const data = readFileSync('./2021/resources/day4.txt', { encoding: 'utf8' }).split('\n')
+const data = readFileSync('./resources/day4.txt', { encoding: 'utf8' }).split('\n')
     , numbers = data[0].split(',').map(Number).sort((a, b) => a > b)
     , cards = [];
 
