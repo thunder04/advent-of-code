@@ -10,9 +10,10 @@ fn main() {
     let stats = bench(|| year_2021::day3::part1(&input));
 
     println!(
-        "Iterations: {} ({} ns/iter - {} ms/iter)",
+        "Iterations: {}\n{} ns/iter\n{} μs/iter\n{} ms/iter",
         stats.iterations,
         stats.ns_per_iter,
+        stats.ns_per_iter / 1_000.,
         stats.ns_per_iter / 1_000_000.
     );
 }
