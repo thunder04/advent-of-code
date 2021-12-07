@@ -25,10 +25,7 @@ pub fn part1(input: &str) -> i64 {
 }
 
 #[allow(dead_code)]
-pub fn part2(input: &str) -> i64 {
-    /*let mut epsilon: i64 = 0;
-    let mut gamma: i64 = 0;
-
-    for i in 0..12 {}*/
+pub fn part2(_: &str) -> i64 {
+    //Too lazy to solve it
     0
 }
