@@ -1,3 +1,6 @@
+///
+/// TODO: Try removing the numbers instead of marking them with -1
+///
 use itertools::Itertools;
 
 fn check_if_won(card: [[i8; 5]; 5]) -> bool {
@@ -27,6 +30,7 @@ fn check_if_won(card: [[i8; 5]; 5]) -> bool {
 }
 
 //TODO: Avoid allocating a vector
+//TODO: Serialize them into a different format
 fn parse_input(input: &str) -> (Vec<i8>, Vec<[[i8; 5]; 5]>) {
     let mut iter = input.lines();
     let iter_ref = iter.by_ref();
@@ -64,32 +68,40 @@ fn parse_input(input: &str) -> (Vec<i8>, Vec<[[i8; 5]; 5]>) {
     (numbers, cards)
 }
 
+fn calculate_winner(card: [[i8; 5]; 5], number: i64) -> i64 {
+    let mut sum: i64 = 0;
+
+    for i in 0..5 {
+        for j in 0..5 {
+            if card[i][j] != -1 {
+                sum += card[i][j] as i64;
+            }
+        }
+    }
+
+    return sum * number;
+}
+
+fn mark_card(card: &mut [[i8; 5]; 5], number: i8) {
+    for i in 0..5 {
+        for j in 0..5 {
+            if number == card[i][j] {
+                card[i][j] = -1;
+            }
+        }
+    }
+}
+
 #[allow(dead_code)]
 pub fn part1(input: &str) -> i64 {
     let (numbers, ref mut cards) = parse_input(input);
 
-    for next_number in numbers {
+    for num in numbers {
         for card in cards.iter_mut() {
-            for i in 0..5 {
-                for j in 0..5 {
-                    if next_number == card[i][j] {
-                        card[i][j] = -1;
-                    }
-                }
-            }
+            mark_card(card, num);
 
             if check_if_won(*card) {
-                let mut sum: i64 = 0;
-
-                for i in 0..5 {
-                    for j in 0..5 {
-                        if card[i][j] != -1 {
-                            sum += card[i][j] as i64;
-                        }
-                    }
-                }
-
-                return sum * next_number as i64;
+                return calculate_winner(*card, num as i64);
             }
         }
     }
@@ -98,6 +110,6 @@ pub fn part1(input: &str) -> i64 {
 }
 
 #[allow(dead_code)]
-pub fn part2(_input: &str) -> i64 {
+pub fn part2(_: &str) -> i64 {
     0
 }
