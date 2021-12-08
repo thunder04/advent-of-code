@@ -2,12 +2,12 @@ use easybench::bench;
 mod year_2021;
 
 fn main() {
-    let file = std::fs::read_to_string("src/year_2021/resources/day3.txt").unwrap();
+    let file = std::fs::read_to_string("src/year_2021/resources/day4.txt").unwrap();
     let input = file.as_str();
 
-    println!("Solution: {}", year_2021::day3::part2(&input));
+    println!("Solution: {}", year_2021::day4::part1(&input));
 
-    let stats = bench(|| year_2021::day3::part2(&input));
+    let stats = bench(|| year_2021::day4::part1(&input));
 
     println!(
         "Iterations: {}\n{} ns/iter\n{} μs/iter\n{} ms/iter",
