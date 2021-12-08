@@ -1,3 +1,8 @@
+enum SearchMethod {
+    LeastCommon,
+    MostCommon,
+}
+
 #[allow(dead_code)]
 pub fn part1(input: &str) -> i64 {
     let vector = &input
@@ -25,7 +30,41 @@ pub fn part1(input: &str) -> i64 {
 }
 
 #[allow(dead_code)]
-pub fn part2(_: &str) -> i64 {
-    //Too lazy to solve it
-    0
+pub fn part2(input: &str) -> i64 {
+    let calculate = |method: SearchMethod| {
+        let mut vector = unsafe { std::mem::transmute::<&str, &[u8]>(input) }
+            .split(|b| *b == 10)
+            .collect::<Vec<_>>();
+        let mut counter = [0_u16; 12];
+        let mut pos: usize = 0;
+
+        while vector.len() > 1 {
+            for line in &vector {
+                if line[pos] == 49 {
+                    counter[pos] += 1;
+                }
+            }
+
+            let ones = counter[pos];
+            let common_bit: u8 = if if matches!(method, SearchMethod::MostCommon) {
+                ones << 1 >= vector.len() as u16
+            } else {
+                ones << 1 < vector.len() as u16
+            } {
+                49
+            } else {
+                48
+            };
+
+            vector.retain(|line| line[pos] == common_bit);
+            pos += 1;
+        }
+
+        i64::from_str_radix(unsafe { std::str::from_utf8_unchecked(vector[0]) }, 2).unwrap()
+    };
+
+    let oxygen_generator_rating: i64 = calculate(SearchMethod::MostCommon);
+    let co2_scrubber_rating: i64 = calculate(SearchMethod::LeastCommon);
+
+    oxygen_generator_rating * co2_scrubber_rating
 }
